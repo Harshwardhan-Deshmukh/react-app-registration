@@ -1,0 +1,18 @@
+.navContainer{
+    width: 100%;
+    background-color: cornflowerblue;
+    height: 10vh;
+    display: flex;   
+    align-items: center;
+}
+.navTitle{
+    align-self: center;
+    margin-left: 1%;
+}
+
+.securePage{
+    margin-left:75%;
+}
+.loginBtn{
+    margin-left: 1%;
+}
