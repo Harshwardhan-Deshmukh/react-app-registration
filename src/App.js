@@ -16,7 +16,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{ contextValue, setContextValue }}>
-      {/* <!--<ReactKeycloakProvider authClient={keycloak}> */}
+      {/* <ReactKeycloakProvider> */}
       <div className="App">
         <Navbar />
         <Routes>

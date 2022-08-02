@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 // import { useKeycloak } from "@react-keycloak/web";
 import "../styles/navbar.css";
+import Registration from "./Registration/Registration";
 
 const Navbar = () => {
   // const { keycloak } = useKeycloak();
@@ -12,6 +13,7 @@ const Navbar = () => {
       <NavLink className="btn btn-primary securePage" to="/helloWorld">
         Hello World Page
       </NavLink>
+      <Registration />
       {/* {!keycloak.authenticated && (
         <button
           type="button"
