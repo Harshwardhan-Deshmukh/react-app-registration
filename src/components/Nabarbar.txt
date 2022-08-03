@@ -1,19 +1,13 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-// import { useKeycloak } from "@react-keycloak/web";
-import "../styles/navbar.css";
-import Registration from "./Registration/Registration";
-
-const Navbar = () => {
-  // const { keycloak } = useKeycloak();
-
-  return (
-    <div className="navContainer">
+<div className="navContainer">
       <span className="navTitle">PSTravel</span>
+      <button className="btn btn-primary securePage" to="/registration">
+        <a></a>Signup
+      </button>
       <NavLink className="btn btn-primary securePage" to="/helloWorld">
         Hello World Page
       </NavLink>
-      <Registration />
+
+
       {/* {!keycloak.authenticated && (
         <button
           type="button"
@@ -35,6 +29,3 @@ const Navbar = () => {
       )} */}
     </div>
   );
-};
-
-export default Navbar;

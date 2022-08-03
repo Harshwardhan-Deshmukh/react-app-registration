@@ -1,10 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import "./styles/App.css";
+import Registration from "./components/Registration/Registration";
 // import { ReactKeycloakProvider } from "@react-keycloak/web";
 // import keycloak from "./Keycloak";
 import Home from "./components/Home";
 import HelloWorld from "./components/HelloWorld";
-import Navbar from "./components/Navbar";
+import Navigationbar from "./components/Navigationbar";
 import { useState } from "react";
 import { AppContext } from "./contexts/AppContext";
 // import { logger } from "./Logger/Logger.ts";
@@ -18,7 +19,7 @@ function App() {
     <AppContext.Provider value={{ contextValue, setContextValue }}>
       {/* <ReactKeycloakProvider> */}
       <div className="App">
-        <Navbar />
+        <Navigationbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -26,6 +27,14 @@ function App() {
             element={
               // <PrivateRoute>
               <HelloWorld />
+              // </PrivateRoute>
+            }
+          />
+          <Route
+            path="/registration"
+            element={
+              // <PrivateRoute>
+              <Registration />
               // </PrivateRoute>
             }
           />

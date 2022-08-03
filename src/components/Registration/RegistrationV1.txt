@@ -6,17 +6,17 @@ import { Card, CardContent } from "@mui/material";
 import "./Registration.css";
 import { keyCloakRegisterUser } from "../../UserService";
 
-import CardHeader from "@material-ui/core/Card";
-
+// import CardHeader from "@material-ui/core/Card";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
+    padding: theme.spacing(2),
 
     "& .MuiTextField-root": {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
       width: "300px",
     },
     "& .MuiButtonBase-root": {
@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Registration = () => {
-  console.log(localStorage.getItem("bearer-token"));
   const classes = useStyles();
   // create state variables for each input
   const [firstName, setFirstName] = useState("");
@@ -34,24 +33,22 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [telephone, setTelephone] = useState("");
-  const [error, setError] = useState(false);
-  const [userExists, setUserExists] = useState(false);
   // const [bgColor, setbgColor] = useState("#FFFFFF");
+
+  // const validatePass =
+  //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=[^ ]{8,15}$)/;
+
+  // if (!validatePass.test(password)) {
+  //   setbgColor("red");
+  // } else {
+  //   console.log(" ");
+  // e.target.password.style = outline red text color red
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // password checker
-    const validatePass =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=[^ ]{8,15}$)/;
-
-    if (!validatePass.test(password)) {
-      setError(true);
-      // error msg toastify
-      return;
-    } else {
-      setError(false);
-    }
 
     const raw = JSON.stringify({
       enabled: true,
@@ -70,90 +67,89 @@ const Registration = () => {
       },
     });
     console.log(raw);
-
-    if (keyCloakRegisterUser(raw) === false) {
-      setUserExists(true);
-    } else {
-      setUserExists(false);
-    }
-    // redirect to email verification page
+    keyCloakRegisterUser(raw);
 
     // handleClose();
   };
 
   return (
     <>
-      <div className="cardContainer">
+      <div className="card">
         <Card
-          className="mdc-card mdc-card--outlined my-card"
-          style={{
-            backgroundColor: "#FFFFFF",
-            borderRadius: "25px",
-          }}
+          className="my-card"
+          style={{ backgroundColor: "#FFFFFF", borderRadius: "25px" }}
         >
           <h4>Sign Up</h4>
-
-          <CardHeader title="Subscribe" className={classes.heading} />
+          {/* <CardHeader title="Subscribe" className={classes.heading} /> */}
           <CardContent>
             <form className={classes.root} onSubmit={handleSubmit}>
               <TextField
-                id="filled-basic"
+                id="outlined-basic"
                 label="First Name"
-                variant="filled"
+                variant="outlined"
                 required
+                error={(e) => e.target.value === ""}
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                style={{ borderRadius: "25px", backgroundColor: "#FFFFFF" }}
               />
+              {/* <TextField
+            label="First Name"
+            variant="filled"
+            required
+            value={firstName}dddd
+            onChange={(e) => setFirstName(e.target.value)}
+            style={{ borderRadius: "7px", backgroundColor: "#FFFFFF" }}
+          /> */}
               <TextField
-                id="filled-basic"
+                id="outlined-basic"
                 label="Last Name"
-                variant="filled"
+                variant="outlined"
                 required
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 style={{ borderRadius: "25px", backgroundColor: "#FFFFFF" }}
               />
               <TextField
-                id="filled-basic"
+                id="outlined-basic"
                 label="Email"
-                variant="filled"
+                variant="outlined"
                 type="email"
                 required
-                error={userExists}
-                helperText={userExists ? "Username Already Exists" : ""}
                 value={email}
-                onChange={(e) => {
-                  setUserExists(false);
-                  setEmail(e.target.value);
-                }}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{ borderRadius: "25px", backgroundColor: "#FFFFFF" }}
               />
 
               <TextField
-                id="filled-basic"
+                id="outlined-basic"
                 label="Password"
-                variant="filled"
+                variant="outlined"
                 type="password"
                 required
                 value={password}
-                onChange={(e) => {
-                  setError(false);
-                  setPassword(e.target.value);
+                onChange={(e) => setPassword(e.target.value)}
+                style={{
+                  borderRadius: "25px",
+                  backgroundColor: "FFFFFF",
                 }}
-                error={error}
-                helperText={error ? "Invalid Password" : ""}
-                // style={{
-                //   borderRadius: "25px",
-                //   backgroundColor: "FFFFFF",
-                // }}
               />
+
+              {/* <TextField>
+                <PasswordField
+                  hintText="At least 8 characters"
+                  floatingLabelText="Enter your password"
+                  errorText="Your password is too short"
+                />
+              </TextField> */}
               <TextField
-                id="filled-basic"
+                id="outlined-basic"
                 label="Telephone Number"
-                variant="filled"
+                variant="outlined"
                 type="tel"
                 value={telephone}
                 onChange={(e) => setTelephone(e.target.value)}
-                // style={{ borderRadius: "25px", backgroundColor: "#FFFFFF" }}
+                style={{ borderRadius: "25px", backgroundColor: "#FFFFFF" }}
               />
               <div>
                 <Button
@@ -164,7 +160,6 @@ const Registration = () => {
                   Cancel
                 </Button>
                 <Button
-                  color="primary"
                   onSubmit={handleSubmit}
                   type="submit"
                   variant="contained"

@@ -1,8 +1,33 @@
-button {
-  transition-duration: 0.4s;
+.my-card {
+  /* margin-top: 30px;
+  min-width: 20%;
+  /* margin: 5rem 45rem; */
 }
 
-button:hover {
-  background-color: #4caf50; /* Green */
-  color: white;
+.title {
+  width: fit-content;
+  height: fit-content;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.cardContainer {
+  margin: auto;
+  max-width: 50%;
+  text-align: center;
+  align-items: center;
+}
+body {
+  background-color: #fbfbfd;
+}
+h4 {
+  text-align: center;
+}
+.card {
+  display: flex;
+  min-width: 20%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }

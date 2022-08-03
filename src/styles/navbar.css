@@ -1,18 +1,17 @@
-.navContainer{
-    width: 100%;
-    background-color: cornflowerblue;
-    height: 10vh;
-    display: flex;   
-    align-items: center;
+.navContainer {
+  width: 100%;
+  background-color: rgb(26, 202, 221);
+  display: flex;
+  align-items: center;
 }
-.navTitle{
-    align-self: center;
-    margin-left: 1%;
+.navTitle {
+  align-self: center;
+  margin-left: 1%;
 }
 
-.securePage{
-    margin-left:75%;
+.securePage {
+  margin-left: 75%;
 }
-.loginBtn{
-    margin-left: 1%;
+.loginBtn {
+  margin-left: 1%;
 }

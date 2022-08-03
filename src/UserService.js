@@ -151,7 +151,7 @@ const getToken = () => {
   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
   myHeaders.append(
     "Access-Control-Allow-Origin",
-    "https://ec2-44-201-156-101.compute-1.amazonaws.com:8443"
+    "https://ec2-44-202-30-0.compute-1.amazonaws.com:8443"
   );
   const urlencoded = new URLSearchParams();
   urlencoded.append("client_id", "admin-cli");
@@ -166,7 +166,7 @@ const getToken = () => {
   };
 
   fetch(
-    "https://ec2-44-201-156-101.compute-1.amazonaws.com:8443/auth/realms/master/protocol/openid-connect/token",
+    "https://ec2-44-202-30-0.compute-1.amazonaws.com:8443/auth/realms/master/protocol/openid-connect/token",
     requestOptions
   ).then((response) =>
     response
@@ -179,7 +179,9 @@ const getToken = () => {
 
 // type : Promise
 // Creates a new user in keycloak.users
-const keyCloakRegisterUser = () => {
+// if user got registered returns true
+// else false
+const keyCloakRegisterUser = (raw) => {
   getToken();
   console.log(localStorage.getItem("bearer-token"));
 
@@ -190,25 +192,6 @@ const keyCloakRegisterUser = () => {
   );
   myHeaders.append("Content-Type", "application/json");
 
-  // ! this should be made using user input from front end form
-  const raw = JSON.stringify({
-    enabled: true,
-    username: "JoshiSexy",
-    email: "JoshiKaEmail@gmail.com",
-    firstName: "Joshin",
-    lastName: "Sexy",
-    credentials: [
-      {
-        type: "password",
-        value: "123",
-        temporary: false,
-      },
-    ],
-    attributes: {
-      DOB: "1984-07-01",
-    },
-  });
-
   const requestOptions = {
     method: "POST",
     headers: myHeaders,
@@ -217,11 +200,15 @@ const keyCloakRegisterUser = () => {
   };
 
   fetch(
-    "https://ec2-44-201-156-101.compute-1.amazonaws.com:8443/auth/admin/realms/PSTravel/users",
+    "https://ec2-44-202-30-0.compute-1.amazonaws.com:8443/auth/admin/realms/PSTravel/users",
     requestOptions
   )
     .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+    .then((results) => results)
+    .catch((error) => {
+      console.log(error);
+      return false;
+    });
+  return true;
 };
-export { keyCloakRegisterUser };
+export { keyCloakRegisterUser, getToken };
