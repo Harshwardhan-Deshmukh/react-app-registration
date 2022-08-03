@@ -69,16 +69,16 @@ const Registration = () => {
         telephone,
       },
     });
-    console.log(raw);
 
-    if (keyCloakRegisterUser(raw) === false) {
-      setUserExists(true);
-    } else {
-      setUserExists(false);
-    }
-    // redirect to email verification page
-
-    // handleClose();
+    keyCloakRegisterUser(raw)
+      .then((response) => response.text())
+      .then((result) => {
+        if (result === "") {
+          setUserExists(false);
+        } else {
+          setUserExists(true);
+        }
+      });
   };
 
   return (

@@ -199,16 +199,9 @@ const keyCloakRegisterUser = (raw) => {
     redirect: "follow",
   };
 
-  fetch(
+  return fetch(
     "https://ec2-44-202-30-0.compute-1.amazonaws.com:8443/auth/admin/realms/PSTravel/users",
     requestOptions
-  )
-    .then((response) => response.text())
-    .then((results) => results)
-    .catch((error) => {
-      console.log(error);
-      return false;
-    });
-  return true;
+  );
 };
 export { keyCloakRegisterUser, getToken };
