@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Card, CardContent } from "@mui/material";
 import "./Registration.css";
-import { keyCloakRegisterUser } from "../../UserService";
+import { keyCloakRegisterUser, getToken } from "../../UserService";
 
 import CardHeader from "@material-ui/core/Card";
 
@@ -26,6 +27,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Registration = () => {
+  useEffect(() => {
+    getToken();
+  }, []);
+
+  const navigate = useNavigate();
+
   console.log(localStorage.getItem("bearer-token"));
   const classes = useStyles();
   // create state variables for each input
@@ -75,6 +82,9 @@ const Registration = () => {
       .then((result) => {
         if (result === "") {
           setUserExists(false);
+          // saving the username password to local storage for email verification
+          localStorage.setItem("email", email);
+          navigate("./email-verification-page");
         } else {
           setUserExists(true);
         }
@@ -99,6 +109,7 @@ const Registration = () => {
             <form className={classes.root} onSubmit={handleSubmit}>
               <TextField
                 id="filled-basic"
+                inputProps={{ "data-testid": "fname" }}
                 label="First Name"
                 variant="filled"
                 required
@@ -107,6 +118,7 @@ const Registration = () => {
               />
               <TextField
                 id="filled-basic"
+                inputProps={{ "data-testid": "lname" }}
                 label="Last Name"
                 variant="filled"
                 required
@@ -116,6 +128,7 @@ const Registration = () => {
               />
               <TextField
                 id="filled-basic"
+                inputProps={{ "data-testid": "email" }}
                 label="Email"
                 variant="filled"
                 type="email"
@@ -131,6 +144,7 @@ const Registration = () => {
 
               <TextField
                 id="filled-basic"
+                inputProps={{ "data-testid": "password" }}
                 label="Password"
                 variant="filled"
                 type="password"
@@ -149,6 +163,7 @@ const Registration = () => {
               />
               <TextField
                 id="filled-basic"
+                inputProps={{ "data-testid": "telephone" }}
                 label="Telephone Number"
                 variant="filled"
                 type="tel"
@@ -158,6 +173,7 @@ const Registration = () => {
               />
               <div>
                 <Button
+                  inputProps={{ "data-testid": "cancel" }}
                   variant="contained"
                   // onClick={handleClose}
                   style={{ color: "#FFFFFF", backgroundColor: "#dc3545" }}
@@ -165,6 +181,7 @@ const Registration = () => {
                   Cancel
                 </Button>
                 <Button
+                  inputProps={{ "data-testid": "signup" }}
                   color="primary"
                   onSubmit={handleSubmit}
                   type="submit"

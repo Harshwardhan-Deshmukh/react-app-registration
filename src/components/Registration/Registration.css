@@ -1,7 +1,11 @@
 .my-card {
   /* margin-top: 30px;
-  min-width: 20%;
+  
   /* margin: 5rem 45rem; */
+  /* min-width: 40%;
+  max-width: 70%;
+  align-items: center; */
+  margin-top: 5%;
 }
 
 .title {
@@ -15,14 +19,9 @@
 .cardContainer {
   margin: auto;
   max-width: 50%;
-  text-align: center;
+  text-align: auto;
+
   align-items: center;
-}
-body {
-  background-color: #fbfbfd;
-}
-h4 {
-  text-align: center;
 }
 .card {
   display: flex;

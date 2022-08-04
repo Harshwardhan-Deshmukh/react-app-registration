@@ -11,6 +11,7 @@ import { AppContext } from "./contexts/AppContext";
 // import { logger } from "./Logger/Logger.ts";
 // import PrivateRoute from "./utils/ProtectedRoute";
 import "@material-ui/core";
+import EmailValidation from "./components/EmailValidation/EmailValidation";
 
 function App() {
   const [contextValue, setContextValue] = useState({});
@@ -27,6 +28,14 @@ function App() {
             element={
               // <PrivateRoute>
               <HelloWorld />
+              // </PrivateRoute>
+            }
+          />
+          <Route
+            path="/registration/email-verification-page"
+            element={
+              // <PrivateRoute>
+              <EmailValidation />
               // </PrivateRoute>
             }
           />

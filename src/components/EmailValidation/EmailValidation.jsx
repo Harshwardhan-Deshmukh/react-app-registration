@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   Typography,
@@ -6,8 +6,59 @@ import {
   CardActions,
   Button,
 } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
+import {
+  getUserFromEmail,
+  getToken,
+  sendEmailVerification,
+} from "../../UserService";
 
-function EmailValidation() {
+const EmailValidation = () => {
+  const navigate = useNavigate();
+  getToken();
+  // get current user email
+  const email = localStorage.getItem("email");
+  if (localStorage.getItem("email") === undefined) {
+    console.log("email not saved in registration");
+    return;
+  }
+
+  // calling once to save
+  useEffect(() => {
+    getUserFromEmail(email).then((response) =>
+      response.json().then(async (data) => {
+        // get id of user
+        await sendEmailVerification(data[0].id)
+          .then((response) => {
+            if (response.status === 204) {
+              // email verification sent
+              console.log("Verification Email Sent");
+            } else {
+              // error sending email verification
+              console.log("Verification Email Not sent");
+            }
+          })
+          .catch((error) => console.log(error));
+      }, [])
+    );
+  }, []);
+
+  const handleProceed = () => {
+    //! onProceed
+    // get user and check if email verified or not
+    getToken();
+    getUserFromEmail(email).then((response) =>
+      response.json().then((data) => {
+        if (data[0].emailVerified === false) {
+          console.log("email not verified");
+          // toast("email not verified")
+        } else {
+          console.log("email verified");
+          navigate("/");
+        }
+      })
+    );
+  };
   return (
     <>
       <Card
@@ -34,8 +85,8 @@ function EmailValidation() {
             paddingTop="30"
           >
             A email with you account confirmation link has been sent to your
-            email: <a href="">harsh123@gmail.com</a>. Check your email and come
-            back to proceed.
+            email: <a href="">{localStorage.getItem("email")}</a>. Check your
+            email and come back to proceed.
           </Typography>
         </CardContent>
 
@@ -47,7 +98,7 @@ function EmailValidation() {
         >
           <Button
             variant="contained"
-            // onClick={handleClose}
+            onClick={handleProceed}
             style={{
               color: "#FFFFFF",
               backgroundColor: "#dc3545",
@@ -59,5 +110,6 @@ function EmailValidation() {
       </Card>
     </>
   );
-}
+};
+
 export default EmailValidation;
