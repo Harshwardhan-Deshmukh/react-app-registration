@@ -80,7 +80,7 @@ const Registration = () => {
           style={{ backgroundColor: "#FFFFFF", borderRadius: "25px" }}
         >
           <h4>Sign Up</h4>
-          {/* <CardHeader title="Subscribe" className={classes.heading} /> */}
+          {/* <CardHeader registration-title="Subscribe" className={classes.heading} /> */}
           <CardContent>
             <form className={classes.root} onSubmit={handleSubmit}>
               <TextField

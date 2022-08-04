@@ -10,7 +10,10 @@ const getToken = () => {
   );
   const urlencoded = new URLSearchParams();
   urlencoded.append("client_id", "admin-cli");
-  urlencoded.append("client_secret", "mNiYtrFleh4uPrW0pbCUUYdpOdaArbix");
+  urlencoded.append(
+    "client_secret",
+    process.env.REACT_APP_CLIENT_SECRECT_ADMIN_CLI
+  );
   urlencoded.append("grant_type", "client_credentials");
 
   const requestOptions = {
@@ -73,7 +76,10 @@ const getJwtToken = () => {
   urlencoded.append("username", localStorage.getItem("username"));
   urlencoded.append("password", localStorage.getItem("password"));
   urlencoded.append("scope", "openid");
-  urlencoded.append("client_secret", "CPh3WWnD8Dfxc1kOow0wzx9hEcJYdQib");
+  urlencoded.append(
+    "client_secret",
+    process.env.REACT_APP_CLIENT_SECRECT_PS_TRAVEL_LOGIN
+  );
 
   const requestOptions = {
     method: "POST",

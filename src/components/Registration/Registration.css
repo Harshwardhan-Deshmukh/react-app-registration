@@ -1,32 +1,38 @@
-.my-card {
+.registration-my-card {
   /* margin-top: 30px;
   
   /* margin: 5rem 45rem; */
   /* min-width: 40%;
-  max-width: 70%;
-  align-items: center; */
+  max-width: 70%;*/
+  margin-bottom: 10%;
   margin-top: 5%;
 }
+/* body {
+  background-image: url("https://mediaim.expedia.com/localexpert/529178/b973c47b-98cc-4c92-8f2d-faae9144b4d1.jpg");
+} */
 
-.title {
+.registration-title {
   width: fit-content;
   height: fit-content;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
-  margin-left: 15px;
-  margin-top: 5px;
+  margin-left: 5%;
+  margin-top: 1%;
 }
 .cardContainer {
-  margin: auto;
-  max-width: 50%;
-  text-align: auto;
-
-  align-items: center;
+  margin-right: 11%;
+  justify-content: flex-end;
+  display: flex;
+}
+.registration-bg-image {
+  background-image: url("https://mediaim.expedia.com/localexpert/529178/b973c47b-98cc-4c92-8f2d-faae9144b4d1.jpg");
+  width: 100%;
+  height: 100%;
 }
 .card {
   display: flex;
   min-width: 20%;
-  flex-direction: column;
-  justify-content: space-between;
+  /* flex-direction: column;
+  justify-content: space-between; */
   align-items: center;
 }
