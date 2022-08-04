@@ -5,12 +5,14 @@ import "./styles/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import EmailValidation from "./components/EmailValidation/EmailValidation";
 // import Registration from "./components/Registration/Registration";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
+      <EmailValidation />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

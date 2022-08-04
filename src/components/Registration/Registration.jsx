@@ -89,6 +89,7 @@ const Registration = () => {
           style={{
             backgroundColor: "#FFFFFF",
             borderRadius: "25px",
+            paddingTop: 30,
           }}
         >
           <h4>Sign Up</h4>
@@ -159,7 +160,7 @@ const Registration = () => {
                 <Button
                   variant="contained"
                   // onClick={handleClose}
-                  style={{ color: "#FFFFFF", backgroundColor: "#333C83" }}
+                  style={{ color: "#FFFFFF", backgroundColor: "#dc3545" }}
                 >
                   Cancel
                 </Button>
@@ -168,7 +169,7 @@ const Registration = () => {
                   onSubmit={handleSubmit}
                   type="submit"
                   variant="contained"
-                  style={{ color: "#FFFFFF", backgroundColor: "#333C83" }}
+                  style={{ color: "#FFFFFF", backgroundColor: "#dc3545" }}
                 >
                   Sign up
                 </Button>
