@@ -61,53 +61,69 @@ const EmailValidation = () => {
   };
   return (
     <>
-      <Card
-        style={{
-          width: 500,
-          height: 280,
-          paddingTop: 30,
-          paddingLeft: 40,
-          paddingRight: 40,
-          marginTop: 100,
-          marginLeft: 530,
-          backgroundColor: "white",
+      <div
+        styles={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "30",
+          backgroundColor: "#fdfdfd",
         }}
       >
-        <CardContent style={{ padding: 20 }}>
-          <Typography gutterBottom variant="h5" component="h2" align="center">
-            Email Verification
-          </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            align="center"
-            paddingTop="30"
-          >
-            A email with you account confirmation link has been sent to your
-            email: <a href="">{localStorage.getItem("email")}</a>. Check your
-            email and come back to proceed.
-          </Typography>
-        </CardContent>
-
-        <CardActions
-          style={{
+        {/* height: 280,
             paddingTop: 30,
-            paddingLeft: 165,
+            paddingLeft: 50,
+            paddingRight: 50,
+            marginTop: 100,
+            backgroundColor: "white", */}
+        <Card
+          variant="outlined"
+          style={{
+            width: "30%",
+            height: "50%",
+            padding: "1% 4%",
+            margin: "auto",
+            marginTop: "5%",
+            backgroundColor: "white",
           }}
         >
-          <Button
-            variant="contained"
-            onClick={handleProceed}
-            style={{
-              color: "#FFFFFF",
-              backgroundColor: "#dc3545",
-            }}
-          >
-            Proceed
-          </Button>
-        </CardActions>
-      </Card>
+          <CardContent style={{ padding: 20 }}>
+            <Typography gutterBottom variant="h5" component="h2" align="center">
+              Hi {localStorage.getItem("firstName")},
+            </Typography>
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              component="p"
+              align="center"
+              paddingTop="30"
+            >
+              An email with confirmation link has been sent to{" "}
+              <a href="">{localStorage.getItem("email")}</a>. Please verify by
+              your identity by clicking on the link and come back here.
+            </Typography>
+          </CardContent>
+
+          <CardActions>
+            <Button
+              variant="contained"
+              onClick={handleProceed}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                color: "#FFFFFF",
+                backgroundColor: "#24a0ed",
+                paddingLeft: "35%",
+                paddingRight: "35%",
+              }}
+            >
+              Verify Email
+            </Button>
+          </CardActions>
+        </Card>
+      </div>
     </>
   );
 };

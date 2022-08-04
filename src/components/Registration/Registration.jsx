@@ -82,6 +82,7 @@ const Registration = () => {
           setUserExists(false);
           // saving the username password to local storage for email verification
           localStorage.setItem("email", email);
+          localStorage.setItem("firstName", firstName);
           navigate("./email-verification-page");
         } else {
           setUserExists(true);
@@ -176,7 +177,7 @@ const Registration = () => {
                     inputProps={{ "data-testid": "cancel" }}
                     variant="contained"
                     // onClick={handleClose}
-                    style={{ color: "#FFFFFF", backgroundColor: "#dc3545" }}
+                    style={{ color: "#FFFFFF", backgroundColor: "#24a0ed" }}
                   >
                     Cancel
                   </Button>
@@ -186,7 +187,7 @@ const Registration = () => {
                     onSubmit={handleSubmit}
                     type="submit"
                     variant="contained"
-                    style={{ color: "#FFFFFF", backgroundColor: "#dc3545" }}
+                    style={{ color: "#FFFFFF", backgroundColor: "#24a0ed" }}
                   >
                     Sign up
                   </Button>
