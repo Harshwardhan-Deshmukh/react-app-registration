@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { Card, CardContent } from "@mui/material";
 import "../../styles/Registration.css";
 import { keyCloakRegisterUser, getToken } from "../../UserService";
-
+import CircularProgress from "@mui/material/CircularProgress";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -41,11 +41,18 @@ const Registration = () => {
   const [telephone, setTelephone] = useState("");
   const [error, setError] = useState(false);
   const [userExists, setUserExists] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // const [bgColor, setbgColor] = useState("#FFFFFF");
 
+  // const handleSpin = (e) => {
+  //   setIsSubmitting(true);
+  //   setTimeout((e) => {
+  //     handleSubmit(e);
+  //   }, 3000);
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsSubmitting(true);
     // password checker
     const validatePass =
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=[^ ]{8,15}$)/;
@@ -53,6 +60,7 @@ const Registration = () => {
     if (!validatePass.test(password)) {
       setError(true);
       // error msg toastify
+      setIsSubmitting(false);
       return;
     } else {
       setError(false);
@@ -83,8 +91,13 @@ const Registration = () => {
           // saving the username password to local storage for email verification
           localStorage.setItem("email", email);
           localStorage.setItem("firstName", firstName);
-          navigate("./email-verification-page");
+
+          // settimeout(1000, () => return navigation <CircularProgress />)
+          setTimeout(() => {
+            navigate("./email-verification-page");
+          }, 2000);
         } else {
+          setIsSubmitting(false);
           setUserExists(true);
         }
       });
@@ -190,6 +203,13 @@ const Registration = () => {
                     style={{ color: "#FFFFFF", backgroundColor: "#24a0ed" }}
                   >
                     Sign up
+                    {isSubmitting && (
+                      <CircularProgress
+                        size="1rem"
+                        color="inherit"
+                        sx={{ ml: 0.5, mr: -1 }}
+                      />
+                    )}
                   </Button>
                 </div>
               </form>

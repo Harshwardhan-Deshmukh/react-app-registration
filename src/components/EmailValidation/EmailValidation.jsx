@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Typography,
@@ -12,8 +12,10 @@ import {
   getToken,
   sendEmailVerification,
 } from "../../UserService";
+import Alert from "@mui/material/Alert";
 
 const EmailValidation = () => {
+  const [emailVerified, setEmailVerified] = useState(0);
   const navigate = useNavigate();
   getToken();
   // get current user email
@@ -27,7 +29,7 @@ const EmailValidation = () => {
   useEffect(() => {
     getUserFromEmail(email).then((response) =>
       response.json().then(async (data) => {
-        console.log(data[0].id);
+        // console.log(data[0].id);
         // get id of user
         await sendEmailVerification(data[0].id)
           .then((response) => {
@@ -52,10 +54,14 @@ const EmailValidation = () => {
       response.json().then((data) => {
         if (data[0].emailVerified === false) {
           console.log("email not verified");
+          setEmailVerified(-1);
           // toast("email not verified")
         } else {
+          setEmailVerified(1);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
           console.log("email verified");
-          navigate("/");
         }
       })
     );
@@ -78,6 +84,17 @@ const EmailValidation = () => {
             paddingRight: 50,
             marginTop: 100,
             backgroundColor: "white", */}
+        {emailVerified === -1 && (
+          <Alert variant="filled" severity="error">
+            This is an error alert — check it out!
+          </Alert>
+        )}
+        {emailVerified === 1 && (
+          <Alert severity="success" variant="filled">
+            This is a success alert — check it out!
+          </Alert>
+        )}
+
         <Card
           variant="outlined"
           style={{
@@ -116,8 +133,8 @@ const EmailValidation = () => {
                 alignItems: "center",
                 color: "#FFFFFF",
                 backgroundColor: "#24a0ed",
-                paddingLeft: "35%",
-                paddingRight: "35%",
+                paddingLeft: "30%",
+                paddingRight: "30%",
               }}
             >
               Verify Email
