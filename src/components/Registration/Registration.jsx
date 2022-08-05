@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Card, CardContent } from "@mui/material";
-import "./Registration.css";
+import "../../styles/Registration.css";
 import { keyCloakRegisterUser, getToken } from "../../UserService";
 
 const useStyles = makeStyles((theme) => ({
@@ -93,7 +93,7 @@ const Registration = () => {
   return (
     <>
       <div className="registration-bg-image">
-        <div className="cardContainer">
+        <div className="registration-cardContainer">
           <Card
             variant="outlined"
             raised="true"

@@ -27,6 +27,7 @@ const EmailValidation = () => {
   useEffect(() => {
     getUserFromEmail(email).then((response) =>
       response.json().then(async (data) => {
+        console.log(data[0].id);
         // get id of user
         await sendEmailVerification(data[0].id)
           .then((response) => {

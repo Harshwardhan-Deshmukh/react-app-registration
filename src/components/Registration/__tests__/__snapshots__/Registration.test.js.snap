@@ -30,7 +30,7 @@ exports[`Registration Button matches snapshot 1`] = `
 
 exports[`Registration renders registration page correctly 1`] = `
 <div
-  className="cardContainer"
+  className="registration-cardContainer"
 >
   <div
     className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root mdc-card mdc-card--outlined registration-my-card css-bhp9pd-MuiPaper-root-MuiCard-root"
